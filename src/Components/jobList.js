@@ -18,14 +18,13 @@ class JobList extends Component {
         }
     }
     componentWillMount(){
-        axios.get('/api/v1/jobs.json').then(res => this.setState({
-            jobs:res.data
-        }))
+        axios.get('http://localhost:3000/api/v1/jobs').then(res => console.log("resdata",res.data))
     }
 
     render()
     {
         let {jobs} = this.state
+        console.log("jobs+++",jobs)
         return(
             <div>
                 <div className="jobs-list">
