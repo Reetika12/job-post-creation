@@ -43,14 +43,22 @@ const create = (baseURL = "http://localhost:3001/") => {
   const loginUser = ({ params }) => {
     return api.get(`/auth/google/callback`, params)
   }
-
+  const postUserDetails = ({ params }) => {
+    let path = `http://localhost:3000/api/v1/users`
+    let user={
+      ...params
+    }
+    console.log("params++",params)
+    return api.post(path, user)
+  }
   return {
     setHeader: api.setHeader,
-    loginUser
+    loginUser,
+    postUserDetails
   }
 }
 
-let createList={
+export default {
   create
 }
-export default createList
+// export default createList
