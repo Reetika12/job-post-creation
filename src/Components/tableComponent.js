@@ -1,5 +1,5 @@
 import React from 'react';
-import { withStyles, makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -17,7 +17,7 @@ const useStyles = makeStyles({
 });
 
 export default function CustomizedTables(props) {
-    let header_name = props.json || {}
+    let header_name = props.json || []
     let tableData = _get(props, 'data') || []
     console.log("headername",header_name)
     console.log("tableData",tableData)
@@ -44,13 +44,13 @@ export default function CustomizedTables(props) {
             header_name.map((item, index) => {
             if (item.key) {
                 return (
-                <TableCell key={item + index} style={{ width: item.columnWidth,  minWidth: item.columnTopicWidth, overflowWrap: item.overflowWrap }} className={classes.tableBodyTextStyle}>
+                <TableCell key={item + index} style={{ width: item.columnWidth,  minWidth: item.columnTopicWidth, marginLeft:item.leftWidth,overflowWrap: item.overflowWrap }} >
                     {row[item.key]}
                 </TableCell>
                 )
             }
             if (item.renderRow) {
-                return <TableCell key={item + index} style={{ width: item.columnWidth,  minWidth: item.columnTopicWidth }} className={classes.tableBodyTextStyle}>{item.renderRow(row)}</TableCell>
+                return <TableCell key={item + index} style={{ width: item.columnWidth,  minWidth: item.columnTopicWidth }} >{item.renderRow(row)}</TableCell>
             }
             return ''
             }

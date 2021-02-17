@@ -15,7 +15,7 @@ export const INITIAL_STATE = Immutable({
   error: null
 })
 
-export const request = (state: Object, action: Object) => {
+export const request = (state: Object) => {
   return state.merge({ fetching: true, error: null })
 }
 

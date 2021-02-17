@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import '../Styles/NewJobForm.css'
 import Button from '@material-ui/core/Button';
-import axios from 'axios';
 import { Creators as PostUserDetailsCreators } from '../Redux/postUserRedux'
 import compose from 'recompose/compose'
 import { connect } from 'react-redux'
@@ -19,30 +18,13 @@ class RegistrationForm extends Component {
         }
     }
     handleRegisteredForm = () =>{
-        const qs = require('qs');
         let{fullnameText,email,password} = this.state
         let params = {
             full_name: fullnameText,
             email: email,
             password: password
         }
-
         this.props.postDocument(params)
-    //     console.log("value++",fullnameText)
-    //    try{
-    //     var result= axios.post('http://localhost:3000/api/v1/users', qs.stringify(
-    //         {
-    //             user:{
-    //             full_name: fullnameText,
-    //             email: email,
-    //             password: password}
-    //         }))
-    //     }
-    //     this.setState({
-    //         fullnameText:"",
-    //         email:"",
-    //         password:""
-    //     })
     }
     handleChangeName = (event) =>{
         this.setState({
@@ -80,4 +62,3 @@ const mapDispatchToProps = (dispatch) => ({
 
 export default compose(connect(mapStateToProps, mapDispatchToProps))(RegistrationForm)
 
-// export default RegistrationForm
