@@ -4,7 +4,7 @@ import Button from '@material-ui/core/Button';
 import axios from 'axios';
 import '../Styles/NewJobForm.css'
 import Dialog from '@material-ui/core/Dialog';
-
+import Table from './tableComponent'
 
 class JobList extends Component {
     constructor(props)
@@ -14,30 +14,32 @@ class JobList extends Component {
             companyName:"",
             position:"",
             Description:"",
-            jobs:[]
+            jobs:[],
+            json:[
+                { key: 'id', label: 'ID' },
+                { key: 'company', label: 'Company'},
+                { key: 'description', label: 'Description'},
+                { key: 'created_at', label: 'Created At'},
+                { key: 'updated_at', label: 'Updated At'},
+            ]
         }
     }
+  
     componentWillMount(){
-        axios.get('http://localhost:3000/api/v1/jobs').then(res => console.log("resdata",res.data))
+        axios.get('http://localhost:3000/api/v1/jobs').then(res => this.setState({
+            jobs:res
+        }))
     }
 
     render()
     {
         let {jobs} = this.state
-        console.log("jobs+++",jobs)
+        let jobData=jobs.data || []
+        console.log("jobs+++",jobData)
         return(
             <div>
                 <div className="jobs-list">
-                    {
-                        jobs.map((job,index)=>{
-                            return(
-                                <div key={index}>
-                                {job.company} | {job.position} | {job.description}
-                                <Button style={{color: '#ffffff',textTransform:'capitalize',marginTop:'10px', marginLeft:'50px'}}className="editButtonStyle" >Edit</Button>
-                                </div>
-                            )
-                        })
-                    }
+                    <Table json={this.state.json} data={jobData}/>
                 </div>
             </div>
         );

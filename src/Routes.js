@@ -4,13 +4,15 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { withRouter } from 'react-router'
 import RegistrationForm from './Components/RegistrationForm'
 import NewJobForm from './Components/NewJobForm'
+import Joblist from './Components/jobList'
 
 
 const MainRouter = () => (
   <Router>
         <Switch>
-          <Route path="/CreateJob" exact component={NewJobForm}/>
-           <Route path="/Registarion" exact component={RegistrationForm}/>
+           <Route path="/createJob" exact component={NewJobForm}/>
+           <Route path="/registarion" exact component={RegistrationForm}/>
+           <Route path="/joblist" exact component={Joblist} />
         </Switch>
     </Router>
 

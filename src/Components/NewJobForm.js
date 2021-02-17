@@ -46,38 +46,13 @@ import axios from 'axios';
                     description: Description 
                 };
        let response = axios.post(`http://localhost:3000/api/v1/jobs`, body, axiosConfig)
-       let responseData=response.then((resp) => console.log(resp))
-       console.log("responsedata",responseData)
-        // .then(res => console.log("res",res))
-        // .catch(err => console.log('Login: ', err));
-        // const qs = require('qs');
-        // let {companyName,position,Description} = this.state
-        // let payload=qs.stringify(
-        //     {
-        //       job:{
-        //         company: companyName,
-        //         position: position,
-        //         description: Description
-        //        }
-        //     }
-        //     )
-        //     const requestOptions = {
-        //         method: 'POST',
-        //         headers: { 'Content-Type': 'application/json' },
-        //         body:payload
-        //     };
-        //     let result=axios.post('http://localhost:3000/api/v1/users', payload).then(response => console.log("response+++",response))
-                // .then(data => this.setState({ postId: data.id }));
-        //  let result = fetch.post('http://localhost:3000/api/v1/jobs', payload).then(res=>(this.setState({
-        //     response:res.data })))
-        //     .catch( error => console.log(error))
-            this.setState({
-                companyName:"",
-                position:"",
-                Description:""
-            })
-            // console.log("result++",result)
-            window.location.reload()
+       let responseData=response.then((resp) => console.log("response",resp))
+       
+        this.setState({
+            companyName:"",
+            position:"",
+            Description:""
+        })
      }
 
 
