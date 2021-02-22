@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import '../Styles/NewJobForm.css'
 import Button from '@material-ui/core/Button';
-import { makeStyles } from '@material-ui/core/styles';
+import PasswordShowHide from "./PasswordShowHide"
 
 class LoginForm extends Component {
     constructor(props)
@@ -11,17 +11,26 @@ class LoginForm extends Component {
         this.state={
             companyName:"",
             position:"",
-            Description:""
+            Description:"",
+            defaultHide:true
         }
     }
-
+    ChangeEvent = () => {
+        this.setState({
+            defaultHide:!this.state.defaultHide
+        })
+    }
     render() {
+        let {defaultHide} = this.state
         return (
              <div>
                  <div className="loginStyle">Login Page</div>
                  <div className="NewJobForm">
                     <input className="enterEmailStyle" type="text" placeholder="Enter Your Email"/>
-                    <input className="enterEmailStyle" type="text" placeholder="Password"/>
+                    <div style={{marginLeft: '60px'}}>
+                        <input className="enterEmailStyle" type="text" placeholder="Password"/>
+                        <Button onClick={this.ChangeEvent.bind(this)}>{defaultHide?"Show":"Hide"}</Button>
+                    </div>
                     <div className="logInStyle">
                       <Button className="createJobButtonStyle" color="inherit" onClick={this.formPostData}>Log In</Button>
                     </div>
