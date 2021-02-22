@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import '../Styles/NewJobForm.css'
 import Button from '@material-ui/core/Button';
+import { makeStyles } from '@material-ui/core/styles';
 
 class LoginForm extends Component {
     constructor(props)
@@ -18,13 +19,16 @@ class LoginForm extends Component {
         return (
              <div>
                  <div className="loginStyle">Login Page</div>
-                 <form style={{display:"flex",flexDirection:'column',alignItems: 'center'}}>
-                        <input style={{width: '400px', height: '40px',marginBottom: '20px'}}type="text" placeholder="Enter Your Email"/>
-                        <input style={{width: '400px', height: '40px',marginBottom: '20px'}}type="text" placeholder="Password"/>
-                        <Button style={{color: '#ffffff',textTransform:'capitalize', marginBottom:'15px'}}className="createJobButtonStyle" onClick={this.formPostData}>Log In</Button>
-                        <Button style={{color: '#ffffff',textTransform:'capitalize', marginBottom:'40px'}} className="createAccountStyle" href={`/Registarion`} >Create New Account</Button>
-
-                 </form>
+                 <div className="NewJobForm">
+                    <input className="enterEmailStyle" type="text" placeholder="Enter Your Email"/>
+                    <input className="enterEmailStyle" type="text" placeholder="Password"/>
+                    <div className="logInStyle">
+                      <Button className="createJobButtonStyle" color="inherit" onClick={this.formPostData}>Log In</Button>
+                    </div>
+                    <div className="createJobstyle">
+                      <Button color="inherit" className="createAccountStyle" href={`/Registarion`} >Create New Account</Button>                  
+                    </div>
+                 </div>
              </div>
         )
     }

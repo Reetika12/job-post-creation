@@ -5,11 +5,13 @@ import { withRouter } from 'react-router'
 import RegistrationForm from './Components/RegistrationForm'
 import NewJobForm from './Components/NewJobForm'
 import Joblist from './Components/jobList'
+import ParentFile from './Components/ParentFile'
 
 
 const MainRouter = () => (
   <Router>
         <Switch>
+           <Route path="/" exact component={ParentFile}/>
            <Route path="/createJob" exact component={NewJobForm}/>
            <Route path="/registarion" exact component={RegistrationForm}/>
            <Route path="/joblist" exact component={Joblist} />

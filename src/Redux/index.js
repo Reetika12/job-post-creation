@@ -9,7 +9,7 @@ export default () => {
   const appReducer = combineReducers({
     routing: routerReducer,
     [StartupKey]: StartupReducer,
-    [PostUserDetailsKey]: StartupReducer
+    [PostUserDetailsKey]: PostUserDetailsReducer
     
   })
 
