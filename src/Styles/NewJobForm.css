@@ -50,6 +50,19 @@
     font-size: 10px;
     text-transform: capitalize;
   }
+  .goToLogin{
+    width: 235px;
+    height: 35px;
+    object-fit: contain;
+    border-radius: 4px;
+    box-shadow: 0 4px 6px 0 rgba(91, 22, 170, 0.06);
+    background-image: linear-gradient(to top,#42b72a, #42b72a);
+    color: #ffffff;
+    margin-top: 48px;
+    margin-bottom: 34px;
+    font-size: 10px;
+    margin-left: 400px;
+  }
   .indexTableButtonStyle{
     border-radius: 16px;
     box-shadow:  0 2.5px 2px 0.5px rgba(196, 196, 196, 0.31);

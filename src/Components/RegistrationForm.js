@@ -4,7 +4,7 @@ import Button from '@material-ui/core/Button';
 import { Creators as PostUserDetailsCreators } from '../Redux/postUserRedux'
 import compose from 'recompose/compose'
 import { connect } from 'react-redux'
-
+import ToastMessage from './ToastMessage'
 class RegistrationForm extends Component {
 
     constructor(props) {
@@ -14,7 +14,8 @@ class RegistrationForm extends Component {
           fullnameText:"",
           email:"",
           password:"",
-          netValue:[]
+          netValue:[],
+          toastMessage : ""
         }
     }
     handleRegisteredForm = () =>{
@@ -25,6 +26,21 @@ class RegistrationForm extends Component {
             password: password
         }
         this.props.postDocument(params)
+    }
+    setToastMessage = (message) => {
+        this.setState({toastMessage:message})
+    }
+    componentDidUpdate(prevProps) {
+        if (prevProps.postUser.fetching  && !this.props.postUser.fetching) {
+            if (!this.props.postUser.error) {
+                this.setToastMessage("Data updated Successfully!");
+                // this.props.history.push('/')
+                // setTimeout(function(){ this.props.history.push('/') }, 1000);
+            } else {
+                let errorMsg = _get(this.props,'postUser.error.error.message') || "Failed to update data, Please try again";
+                this.setToastMessage(errorMsg);
+            }
+        }
     }
     handleChangeName = (event) =>{
         this.setState({
@@ -41,14 +57,28 @@ class RegistrationForm extends Component {
             password:event.target.value
         })
     }
+    goBackToLoginPage = () => {
+        this.props.history.push('/')
+    }
     render() {
         let{fullnameText,email,password} = this.state
         return (
-            <div style={{display:"flex",flexDirection:'column',alignItems: 'center'}}>
-                <input style={{width: '400px', height: '40px',marginBottom: '20px'}}type="text" value={fullnameText} onChange={this.handleChangeName} placeholder="Enter Your Fullname"/>
-                <input style={{width: '400px', height: '40px',marginBottom: '20px'}}type="text" value={email} onChange={this.handleChangeEmail} placeholder="Enter Your Email"/>
-                <input style={{width: '400px', height: '40px',marginBottom: '20px'}}type="text" value={password} onChange={this.handleChangePassword} placeholder="Enter Your Password"/>   
-                <Button style={{color: '#ffffff',textTransform:'capitalize', marginBottom:'40px'}} className="createAccountStyle" onClick={this.handleRegisteredForm} >Register Now</Button>
+            <div>
+                <div style={{display:"flex",flexDirection:'column',alignItems: 'center'}}>
+                    <input style={{width: '400px', height: '40px',marginBottom: '20px'}}type="text" value={fullnameText} onChange={this.handleChangeName} placeholder="Enter Your Fullname"/>
+                    <input style={{width: '400px', height: '40px',marginBottom: '20px'}}type="text" value={email} onChange={this.handleChangeEmail} placeholder="Enter Your Email"/>
+                    <input style={{width: '400px', height: '40px',marginBottom: '20px'}}type="text" value={password} onChange={this.handleChangePassword} placeholder="Enter Your Password"/>   
+                    <Button style={{color: '#ffffff',textTransform:'capitalize', marginBottom:'40px'}} className="createAccountStyle" onClick={this.handleRegisteredForm} >Register Now</Button>
+                </div>
+                <div style={{display:'flex',justifyContent: 'center',color: 'blue',cursor: 'pointer'}} onClick= {this.goBackToLoginPage}>
+                    Go To Login page
+                </div>
+                {this.state.toastMessage && <ToastMessage
+                         horizontal="right"
+                         message ={this.state.toastMessage}
+                         open={true}
+                         handleClose ={()=>this.setToastMessage("")}
+                 />}
             </div>
         )
     }
