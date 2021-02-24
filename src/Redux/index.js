@@ -4,6 +4,8 @@ import { combineReducers } from 'redux'
 import { routerReducer } from 'react-router-redux'
 import PostUserDetailsReducer, { key as PostUserDetailsKey } from './postUserRedux'
 import PostLoginDetailsReducer, { key as PostLoginDetailsKey } from './postLoginDetailsRedux'
+import GetJobDetailsReducer, { key as GetJobDetailsKey } from './getJobDetailsRedux'
+
 
 import StartupReducer, { key as StartupKey } from './StartupRedux'
 
@@ -12,7 +14,8 @@ export default () => {
     routing: routerReducer,
     [StartupKey]: StartupReducer,
     [PostUserDetailsKey]: PostUserDetailsReducer,
-    [PostLoginDetailsKey]: PostLoginDetailsReducer
+    [PostLoginDetailsKey]: PostLoginDetailsReducer,
+    [GetJobDetailsKey]: GetJobDetailsReducer
   })
 
   return createStore(appReducer, rootSaga)

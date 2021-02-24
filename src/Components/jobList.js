@@ -1,9 +1,12 @@
-// import React, {useState,useEffect} from 'react';
 import React, { Component } from 'react'
 import Button from '@material-ui/core/Button';
 import axios from 'axios';
 import '../Styles/NewJobForm.css'
 import Table from './tableComponent'
+import { Creators as GetJobDetailsCreators } from '../Redux/getJobDetailsRedux'
+import compose from 'recompose/compose'
+import { connect } from 'react-redux'
+import _get from 'lodash/get'
 
 class JobList extends Component {
     constructor(props)
@@ -20,28 +23,25 @@ class JobList extends Component {
                 { key: 'description', label: 'Description',columnWidth: '200px'},
                 { key: 'created_at', label: 'Created At',columnWidth: '70px'},
                 { key: 'updated_at', label: 'Updated At',columnWidth: '70px'},
-                { renderRow: (row) => <Button variant="contained" className="indexTableButtonStyle" onClick={this.handleEditEvent.bind(this, row)} >Edit</Button>, columnWidth: '70px'},
-                { renderRow: (row) => <Button variant="contained" onClick={this.handleEditEvent.bind(this, row)} >Delete</Button>, columnWidth: '70px'},
+                { renderRow: (row) => <div variant="contained" className="indexTableButtonStyle" onClick={this.handleEditEvent.bind(this, row)} >Edit</div>, columnWidth: '70px'},
+                { renderRow: (row) => <div variant="contained" className="indexTableButtonStyle" onClick={this.handleEditEvent.bind(this, row)} >Delete</div>, columnWidth: '70px'}
             ]
         }
     }
   
     componentDidMount(){
-        axios.get('http://localhost:3000/api/v1/jobs').then(res => this.setState({
-            jobs:res
-        }))
+        this.props.getJobData()
     }
     handleEditEvent = () =>{
         console.log("kjchgvfc")
     }
     render()
     {
-        let {jobs} = this.state
-        let jobData=jobs.data || []
+        let jobData = _get(this.props, 'getJobDetails.data') || []
         console.log("jobs+++",jobData)
         return(
             <div>
-                <h2>Job List</h2>
+                <div className="jobListTitle">Job List</div>
                 <div className="jobs-list">
                     <Table json={this.state.json} data={jobData}/>
                 </div>
@@ -50,4 +50,12 @@ class JobList extends Component {
     }
    
 }
-export default JobList;
+
+const mapStateToProps = (state) => ({
+    getJobDetails: state.getJobDetails
+})
+const mapDispatchToProps = (dispatch) => ({
+    getJobData: () => dispatch(GetJobDetailsCreators.request()),
+})
+
+export default compose(connect(mapStateToProps, mapDispatchToProps))(JobList)

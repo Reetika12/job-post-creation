@@ -72,6 +72,7 @@
     text-transform: none;
     text-align: center;
     font-size: 12px;
+    cursor: pointer;
   }
   .PortalTextStyle{
     display: flex;
@@ -100,4 +101,10 @@
   color: #ffffff;
   text-transform: capitalize;
   margin-bottom: 40px;
+}
+.jobListTitle{
+  display: flex;
+  padding-left: 40px;
+  font-size: 25px;
+  font-family: fantasy;
 }

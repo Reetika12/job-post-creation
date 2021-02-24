@@ -56,11 +56,16 @@ const create = (baseURL = "http://localhost:3001/") => {
     }
     return api.post(path, params)
   }
+  const getJobDetails = () => {
+    let path = `http://localhost:3000/api/v1/jobs`
+    return api.get(path)
+  }
   return {
     setHeader: api.setHeader,
     loginUser,
     postUserDetails,
-    postLoginDetails
+    postLoginDetails,
+    getJobDetails
   }
 }
 

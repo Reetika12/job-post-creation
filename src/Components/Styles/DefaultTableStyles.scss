@@ -1,0 +1,52 @@
+// export default {
+    .grow{
+        display: flex;
+      }
+      .tableHeaderStyle {
+        font-family: 'Gotham-Bold';
+        padding-left: 20px;
+        font-size: 12px;
+        font-weight: bold;
+        color: #333333 ;
+        line-height: normal;
+        height: 14px;
+        background-color: #ededed;
+      }
+      .tableBodyTextStyle {
+        font-family: 'Gotham-Book';
+        font-size: 13px;
+        color: #333333;
+        padding-left: 20px;
+        overflow-wrap: anywhere;
+      }
+      .sideNavbarStyle{
+        font-family: 'Gotham-Book';
+        font-size: 15px;
+        color: #969696;
+        text-decoration: none;
+        
+      }
+      .tableHeaderRowStyle{
+        border-radius: 10px;
+        background-image: linear-gradient(to bottom, #ffffff 2%, #f3f0f0 98%);
+      }
+      .tableBodyRowStyle{
+        vertical-align: top;
+      }
+      .sidebarParentStyle {
+        height: 100%;
+        background-color: #ffffff;
+        box-shadow: 0 2px 4px 0 rgba(182, 182, 182, 0.2);
+        text-decoration: none;
+        padding-top: 30px;
+      }
+      .table {
+        border: 0;
+      }
+      .CourseListStyle {
+        font-family: 'Gotham-Medium';
+        font-size: 20px;
+        font-weight: 500;
+        color: #333333;
+        margin: 16px 32px 16px 32px;
+      }

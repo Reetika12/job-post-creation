@@ -11,10 +11,10 @@ import ParentFile from './Components/ParentFile'
 const MainRouter = () => (
   <Router>
         <Switch>
-           <Route path="/" exact component={ParentFile}/>
-           <Route path="/createJob" exact component={NewJobForm}/>
-           <Route path="/registarion" exact component={RegistrationForm}/>
-           <Route path="/joblist" exact component={Joblist} />
+           <Route exact path="/"  component={ParentFile}/>
+           <Route exact path="/createJob"  component={NewJobForm}/>
+           <Route exact path="/registarion" component={RegistrationForm}/>
+           <Route exact path="/joblist" component={Joblist} />
         </Switch>
     </Router>
 
