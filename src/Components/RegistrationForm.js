@@ -5,6 +5,8 @@ import { Creators as PostUserDetailsCreators } from '../Redux/postUserRedux'
 import compose from 'recompose/compose'
 import { connect } from 'react-redux'
 import ToastMessage from './ToastMessage'
+import _get from 'lodash/get'
+
 class RegistrationForm extends Component {
 
     constructor(props) {
@@ -34,8 +36,11 @@ class RegistrationForm extends Component {
         if (prevProps.postUser.fetching  && !this.props.postUser.fetching) {
             if (!this.props.postUser.error) {
                 this.setToastMessage("Data updated Successfully!");
-                // this.props.history.push('/')
-                // setTimeout(function(){ this.props.history.push('/') }, 1000);
+                this.setState({
+                    fullnameText:"",
+                    email:"",
+                    password:""
+                })
             } else {
                 let errorMsg = _get(this.props,'postUser.error.error.message') || "Failed to update data, Please try again";
                 this.setToastMessage(errorMsg);

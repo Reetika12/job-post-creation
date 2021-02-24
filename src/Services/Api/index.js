@@ -1,6 +1,4 @@
 import apisauce from 'apisauce'
-// import qs from 'qs'
-// import Config from '../../Config/AppConfig'
 
 const create = (baseURL = "http://localhost:3001/") => {
   const api = apisauce.create({
@@ -51,14 +49,21 @@ const create = (baseURL = "http://localhost:3001/") => {
     console.log("params++",params)
     return api.post(path, user)
   }
+  const postLoginDetails = ({ params }) => {
+    let path = `http://localhost:3000/api/v1/login/validate`
+    let user={
+      ...params
+    }
+    return api.post(path, params)
+  }
   return {
     setHeader: api.setHeader,
     loginUser,
-    postUserDetails
+    postUserDetails,
+    postLoginDetails
   }
 }
 
 export default {
   create
 }
-// export default createList
