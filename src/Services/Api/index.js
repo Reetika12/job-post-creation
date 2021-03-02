@@ -51,21 +51,23 @@ const create = (baseURL = "http://localhost:3001/") => {
   }
   const postLoginDetails = ({ params }) => {
     let path = `http://localhost:3000/api/v1/login/validate`
-    let user={
-      ...params
-    }
     return api.post(path, params)
   }
   const getJobDetails = () => {
     let path = `http://localhost:3000/api/v1/jobs`
     return api.get(path)
   }
+  const postJobDetails = ({ params }) => {
+    let path = `http://localhost:3000/api/v1/users/${params.user_id}/jobs`
+    return api.post(path, params)
+  }
   return {
     setHeader: api.setHeader,
     loginUser,
     postUserDetails,
     postLoginDetails,
-    getJobDetails
+    getJobDetails,
+    postJobDetails
   }
 }
 

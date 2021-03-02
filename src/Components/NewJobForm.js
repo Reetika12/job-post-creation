@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 import Button from '@material-ui/core/Button';
 import '../Styles/NewJobForm.css'
+import { Creators as PostJobDetailsCreators } from '../Redux/PostJobRedux'
+import compose from 'recompose/compose'
+import { connect } from 'react-redux'
 
 class NewJobForm extends Component {
     constructor(props) {
@@ -32,6 +35,14 @@ class NewJobForm extends Component {
         console.log("this state", this.state.response)
     }
     formPostData = () => {
+        let { companyName, position, Description } = this.state
+        const params = {
+            company: companyName,
+            position: position,
+            description: Description,
+            user_id: 25
+        };
+        this.props.postJobDetails(params)
         this.setState({
             companyName: "",
             position: "",
@@ -54,5 +65,12 @@ class NewJobForm extends Component {
         )
     }
 }
+const mapStateToProps = (state) => ({
+    postJobData: state.postJobDetail
+})
+const mapDispatchToProps = (dispatch) => ({
+    postJobDetails: (p) => dispatch(PostJobDetailsCreators.request(p))
+})
 
-export default NewJobForm
+export default compose(connect(mapStateToProps, mapDispatchToProps))(NewJobForm)
+
