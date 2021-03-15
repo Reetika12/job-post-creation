@@ -54,6 +54,15 @@ class LoginForm extends Component {
         }
     }
     emailChangeEvent = (event) => {
+        let emailInput=document.getElementById('email')
+        emailInput.addEventListener('keyup',function(event){
+            if(event.getModifierState('CapsLock')){
+                console.log('caps lock is on')
+            }
+            else{
+                console.log("caps lock is off");
+            }
+        });
         this.setState({
             email: event.target.value
         })
@@ -70,7 +79,7 @@ class LoginForm extends Component {
              <div>
                  <div className="loginStyle">Login Page</div>
                  <div className="NewJobForm">
-                    <input className="enterEmailStyle" type="text" onChange={this.emailChangeEvent} placeholder="Enter Your Email"/>
+                    <input className="enterEmailStyle" type="text" onChange={this.emailChangeEvent} id ="email" placeholder="Enter Your Email"/>
                     <div style={{marginLeft: '60px'}}>
                         <input className="enterEmailStyle" type="text" onChange={this.passwordChangeEvent} placeholder="Password"/>
                         <Button onClick={this.ChangeEvent.bind(this)}>{defaultHide?"Show":"Hide"}</Button>

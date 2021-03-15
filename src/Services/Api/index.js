@@ -46,7 +46,6 @@ const create = (baseURL = "http://localhost:3001/") => {
     let user={
       ...params
     }
-    console.log("params++",params)
     return api.post(path, user)
   }
   const postLoginDetails = ({ params }) => {
