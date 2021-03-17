@@ -7,6 +7,7 @@ import compose from 'recompose/compose'
 import { connect } from 'react-redux'
 import _get from 'lodash/get'
 import ToastMessage from './ToastMessage'
+import { Images } from '../Themes'
 
 class LoginForm extends Component {
     constructor(props)
@@ -76,8 +77,40 @@ class LoginForm extends Component {
     render() {
         let {defaultHide,disableJobButton} = this.state
         return (
-             <div>
-                 <div className="loginStyle">Login Page</div>
+             <div className="container">
+                 <div className="forms-container"> 
+                   <div className="signin-signup">
+                       <form action="" className="sign-in-form">
+                           <h2 className="title">Sign in</h2>
+                           <div className="input-field">
+                                <i className="fas fa-user"></i>
+                                <input type="text" placeholder="username" />
+                           </div>
+                            <div className="input-field">
+                                <img src={Images.lockIcon} alt='lock-icon' />
+                                <input type="password" placeholder="password" />
+                           </div>
+                           <input type="submit" value="Login" className="btn solid"/>
+                           <p className="social-text">Or sign in with social platforms</p>
+                           <div className="social-media">
+                               <a className="social-icon">
+                                   <i className="fab fa-facebook"></i>
+                               </a>
+                                <a className="social-icon">
+                                    <i className="fab fa-twitter"></i>
+                                </a>
+                                <a className="social-icon">
+                                    <i className="fab fa-goggle"></i>
+                                </a>
+                                <a className="social-icon">
+                                    <i className="fab fa-linked-in"></i>
+                                </a>
+                           </div>
+                       </form>
+                   </div>
+                 </div>
+
+                 {/* <div className="loginStyle">Login Page</div>
                  <div className="NewJobForm">
                     <input className="enterEmailStyle" type="text" onChange={this.emailChangeEvent} id ="email" placeholder="Enter Your Email"/>
                     <div style={{marginLeft: '60px'}}>
@@ -99,7 +132,7 @@ class LoginForm extends Component {
                          message ={this.state.toastMessage}
                          open={true}
                          handleClose ={()=>this.setToastMessage("")}
-                 />}
+                 />} */}
              </div>
         )
     }
