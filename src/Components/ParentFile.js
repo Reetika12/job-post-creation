@@ -6,7 +6,6 @@ class ParentFile extends Component {
     render() {
         return (
             <div>
-                <div className="PortalTextStyle">Welcome To Job Portal</div>
                 <LoginForm/>
             </div>
         )

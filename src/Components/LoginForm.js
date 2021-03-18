@@ -7,63 +7,56 @@ import compose from 'recompose/compose'
 import { connect } from 'react-redux'
 import _get from 'lodash/get'
 import ToastMessage from './ToastMessage'
-import { Images } from '../Themes'
+import imgsrc from '../Images/downloadLockIcon.png'
+import usersrc from '../Images/userName.png'
+
+// import { Images } from '../Themes'
 
 class LoginForm extends Component {
-    constructor(props)
-    {
+    constructor(props) {
         super(props);
         
-        this.state={
-            email:"",
-            Password:"",
-            defaultHide:true,
-            toastMessage : "",
-            disableJobButton:true
+        this.state = {
+            email: "",
+            Password: "",
+            defaultHide: true,
+            toastMessage: "",
+            disableJobButton: true
         }
     }
     ChangeEvent = () => {
         this.setState({
-            defaultHide:!this.state.defaultHide
+            defaultHide: !this.state.defaultHide
         })
     }
     formPostData = () => {
-        let {email,Password} = this.state
+        let { email, Password } = this.state
         let params = {
             email,
-            password:Password
+            password: Password
         }
         this.props.postLoginDetails(params)
     }
     setToastMessage = (message) => {
-        this.setState({toastMessage:message})
+        this.setState({ toastMessage: message })
     }
     componentDidUpdate(prevProps) {
-        if (prevProps.postLoginData.fetching  && !this.props.postLoginData.fetching) {
+        if (prevProps.postLoginData.fetching && !this.props.postLoginData.fetching) {
             if (!this.props.postLoginData.error) {
                 this.setToastMessage("logged in Successfully!");
                 this.setState({
-                    fullnameText:"",
-                    email:"",
-                    password:"",
-                    disableJobButton:false
+                    fullnameText: "",
+                    email: "",
+                    password: "",
+                    disableJobButton: false
                 })
             } else {
-                let errorMsg = _get(this.props,'postLoginData.error.error.message') || "Failed to login, Please try again";
+                let errorMsg = _get(this.props, 'postLoginData.error.error.message') || "Failed to login, Please try again";
                 this.setToastMessage(errorMsg);
             }
         }
     }
     emailChangeEvent = (event) => {
-        let emailInput=document.getElementById('email')
-        emailInput.addEventListener('keyup',function(event){
-            if(event.getModifierState('CapsLock')){
-                console.log('caps lock is on')
-            }
-            else{
-                console.log("caps lock is off");
-            }
-        });
         this.setState({
             email: event.target.value
         })
@@ -73,29 +66,30 @@ class LoginForm extends Component {
             Password: event.target.value
         })
     }
-   
+
     render() {
-        let {defaultHide,disableJobButton} = this.state
+        let { defaultHide, disableJobButton } = this.state
         return (
-             <div className="container">
-                 <div className="forms-container"> 
-                   <div className="signin-signup">
-                       <form action="" className="sign-in-form">
-                           <h2 className="title">Sign in</h2>
-                           <div className="input-field">
-                                <i className="fas fa-user"></i>
-                                <input type="text" placeholder="username" />
-                           </div>
+            <div className="container">
+                <div className="forms-container">
+                    <div className="signin-signup">
+                        <form action="" className="sign-in-form">
+                            <h2 className="title">Sign in</h2>
                             <div className="input-field">
-                                <img src={Images.lockIcon} alt='lock-icon' />
-                                <input type="password" placeholder="password" />
-                           </div>
-                           <input type="submit" value="Login" className="btn solid"/>
-                           <p className="social-text">Or sign in with social platforms</p>
-                           <div className="social-media">
-                               <a className="social-icon">
-                                   <i className="fab fa-facebook"></i>
-                               </a>
+                                <i className="fas fa-user"></i>
+                                <input type="text" onChange={this.emailChangeEvent} placeholder="email" />
+                            </div>
+                            <div className="input-field">
+                                <img src={imgsrc} />
+                                {/* <i className="fas fa-lock"></i> */}
+                                <input type="password" onChange={this.passwordChangeEvent} placeholder="password" />
+                            </div>
+                            <input type="submit" value="Login" onClick={this.formPostData} className="btn solid" />
+                            <p className="social-text">Or sign in with social platforms</p>
+                            <div className="social-media">
+                                <a className="social-icon">
+                                    <i className="fab fa-facebook"></i>
+                                </a>
                                 <a className="social-icon">
                                     <i className="fab fa-twitter"></i>
                                 </a>
@@ -105,12 +99,40 @@ class LoginForm extends Component {
                                 <a className="social-icon">
                                     <i className="fab fa-linked-in"></i>
                                 </a>
-                           </div>
-                       </form>
-                   </div>
-                 </div>
+                            </div>
+                        </form>
+                        <form action="" className="sign-up-form">
+                            <h2 className="title">Sign up</h2>
+                            <div className="input-field">
+                                <i className="fas fa-user"></i>
+                                <input type="text" onChange={this.emailChangeEvent} placeholder="Username" />
+                            </div>
+                            <div className="input-field">
+                                {/* <img src={imgsrc} /> */}
+                                <i className="fas fa-envelope"></i>
+                                <input type="password" onChange={this.passwordChangeEvent} placeholder="Email" />
+                            </div>
+                            <input type="submit" value="Sign Up" onClick={this.formPostData} className="btn solid" />
+                            <p className="social-text">Or sign up with social platforms</p>
+                            <div className="social-media">
+                                <a className="social-icon">
+                                    <i className="fab fa-facebook"></i>
+                                </a>
+                                <a className="social-icon">
+                                    <i className="fab fa-twitter"></i>
+                                </a>
+                                <a className="social-icon">
+                                    <i className="fab fa-goggle"></i>
+                                </a>
+                                <a className="social-icon">
+                                    <i className="fab fa-linked-in"></i>
+                                </a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
 
-                 {/* <div className="loginStyle">Login Page</div>
+                {/* <div className="loginStyle">Login Page</div>
                  <div className="NewJobForm">
                     <input className="enterEmailStyle" type="text" onChange={this.emailChangeEvent} id ="email" placeholder="Enter Your Email"/>
                     <div style={{marginLeft: '60px'}}>
@@ -133,7 +155,7 @@ class LoginForm extends Component {
                          open={true}
                          handleClose ={()=>this.setToastMessage("")}
                  />} */}
-             </div>
+            </div>
         )
     }
 }

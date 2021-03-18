@@ -1,4 +1,4 @@
 const images = {
-    lockIcon: require('../Images/lockSolid.svg')
+    lockIcon: require('../Images/downloadLockIcon.png')
 }
 export default images
