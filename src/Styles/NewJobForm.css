@@ -122,7 +122,9 @@
   height: 2000px;
   border-radius: 50%;
   background: linear-gradient(-45deg, #4481eb, #04befe);
-  
+  top: -10%;
+  right: 48%;
+  transform:translateY(-50%);
 }
 /* .forms-container{
   position: absolute;
@@ -236,4 +238,11 @@ form.sign-up-form{
   width: 50%;
   display:grid;
   grid-template-columns: 1fr;
+}
+.facebookStyle{
+  width:40px;
+  height:40px;
+}
+.image{
+  width:100%;
 }

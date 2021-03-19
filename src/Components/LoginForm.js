@@ -8,8 +8,8 @@ import { connect } from 'react-redux'
 import _get from 'lodash/get'
 import ToastMessage from './ToastMessage'
 import imgsrc from '../Images/downloadLockIcon.png'
-import usersrc from '../Images/userName.png'
-
+import emailShow from '../Images/emailShow.png'
+import facebookShow from '../Images/facebookImg.png'
 // import { Images } from '../Themes'
 
 class LoginForm extends Component {
@@ -76,19 +76,18 @@ class LoginForm extends Component {
                         <form action="" className="sign-in-form">
                             <h2 className="title">Sign in</h2>
                             <div className="input-field">
-                                <i className="fas fa-user"></i>
+                                <img src={emailShow}/>
                                 <input type="text" onChange={this.emailChangeEvent} placeholder="email" />
                             </div>
                             <div className="input-field">
                                 <img src={imgsrc} />
-                                {/* <i className="fas fa-lock"></i> */}
                                 <input type="password" onChange={this.passwordChangeEvent} placeholder="password" />
                             </div>
                             <input type="submit" value="Login" onClick={this.formPostData} className="btn solid" />
                             <p className="social-text">Or sign in with social platforms</p>
                             <div className="social-media">
                                 <a className="social-icon">
-                                    <i className="fab fa-facebook"></i>
+                                    <img className="facebookStyle" src={facebookShow} alt="" />
                                 </a>
                                 <a className="social-icon">
                                     <i className="fab fa-twitter"></i>
@@ -131,7 +130,13 @@ class LoginForm extends Component {
                         </form>
                     </div>
                 </div>
-
+                {this.state.toastMessage && <ToastMessage
+                    horizontal="right"
+                    message={this.state.toastMessage}
+                    open={true}
+                    handleClose={() => this.setToastMessage("")}
+                />} 
+                
                 {/* <div className="loginStyle">Login Page</div>
                  <div className="NewJobForm">
                     <input className="enterEmailStyle" type="text" onChange={this.emailChangeEvent} id ="email" placeholder="Enter Your Email"/>
