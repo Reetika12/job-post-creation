@@ -1,0 +1,52 @@
+1. make an entry to  your /etc/hosts
+  
+   127.0.0.1 experts-local.byjus.com
+   
+2. execute this command to create self signed certificate in /usr/local/etc/nginx dir
+
+   sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /usr/local/etc/nginx/cert.key -out /usr/local/etc/nginx/cert.crt
+
+3. a. install nginx
+    
+      brew install nginx
+    
+   b. go to /usr/local/etc/nginx/servers
+      
+      create new file with name 'experts-local.byjus.com'
+
+   c. copy and pase the below snippets, note:  replace this http://localhost:3000 with your localserver 
+
+      server {      
+
+          listen 443;
+          server_name experts-local.byjus.com;      
+
+          ssl_certificate           /usr/local/etc/nginx/cert.crt;
+          ssl_certificate_key       /usr/local/etc/nginx/cert.key;      
+
+          ssl on;
+          ssl_session_cache builtin:1000 shared:SSL:10m;
+          ssl_session_timeout  5m;
+          ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
+          ssl_ciphers HIGH:!aNULL:!eNULL:!EXPORT:!CAMELLIA:!DES:!MD5:!PSK:!RC4;
+          ssl_prefer_server_ciphers on;
+          
+          access_log  /usr/local/var/log/nginx/access.log;      
+
+          location / {
+            
+            proxy_set_header        Host $host;
+            proxy_set_header        X-Real-IP $remote_addr;
+            proxy_set_header        X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header        X-Forwarded-Proto $scheme;      
+
+            proxy_pass          http://localhost:3000;
+            proxy_read_timeout  90;     
+
+            proxy_redirect http://localhost:3000 https://experts-local.byjus.com;
+          }
+      }
+      
+    d. go to terminal
+     
+       brew services restart nginx
