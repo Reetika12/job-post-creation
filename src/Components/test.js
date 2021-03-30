@@ -12,7 +12,7 @@ import AppHeader from '../../Components/AppHeader';
 import Loader from '../Loading';
 import SelectMenu from "../SelectMenu";
 import ToastMessage from '../../Components/ToastMessage';
-
+import AppSubHeader from '../../Components/AppSubHeader'
 import { Creators as GetCoursesByIdCreators } from '../../Redux/GetCourseByIdRedux';
 import { Creators as createNewSlotGroupCreators } from '../../Redux/CreateNewSlotGroupRedux';
 
@@ -183,20 +183,19 @@ class NewSlotGroup extends Component {
             return <Loader />
         }
 
-        const course_id = _get(this.props, 'match.params.course_id');
-
+        const courseId = _get(this.props, 'match.params.course_id');
+        const breadcrumbs = [
+            { title: 'Courses', to: '/courses' },
+            { title: `${courseId}`, to: `/courses/${courseId}` },
+            { title: `Slot Groups`, to: `/courses/${courseId}/slot_groups` },
+            { title: 'Create' },
+        ];
         return (
             <React.Fragment>
                 <AppHeader user={session} drawerDocked={drawerDocked} />
 
                 <div className="slotGroupContainer">
-
-                    <a href={`/courses/${course_id}/slot_groups`} className="newSlotGroupBackAction">
-                        {"< Manage Slot Group"}
-                    </a>
-
-                    <div className="slotPageTitle">New Slot Group</div>
-
+                    <AppSubHeader breadcrumbs={breadcrumbs} title='Create Slot Groups' />
                     <div className="newSlotGroupContainer">
                         <div className="newSlotGroupHeader">Slot Group</div>
                         <div className="newSlotGroupForm">
@@ -258,7 +257,7 @@ class NewSlotGroup extends Component {
                                             </Grid>
 
                                             <Grid container spacing={2} className="startTimeParent">
-                                                <Grid item xs={2} style={{ paddingLeft: '0px' }}><label className="slotLabelNew">Start Time*</label></Grid>
+                                                <Grid item xs={2} style={{ paddingLeft: '0px' }}><label className="slotLabel">Start Time*</label></Grid>
                                                 <Grid item xs={4} style={{ paddingLeft: '0px' }}><input
                                                     type="text"
                                                     value={slot.start_time}
