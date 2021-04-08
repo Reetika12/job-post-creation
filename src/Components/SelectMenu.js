@@ -1,15 +1,17 @@
 // @flow weak
 
-import React, { Component } from 'react'
-import compose from 'recompose/compose'
-import { connect } from 'react-redux'
-import { withStyles } from '@material-ui/core/styles'
-import Input from '@material-ui/core/Input'
-import MenuItem from '@material-ui/core/MenuItem'
-import FormControl from '@material-ui/core/FormControl'
-import Select from '@material-ui/core/Select'
-import get from 'lodash/get'
-const styleSheet = theme => ({
+import React, { Component } from 'react';
+import compose from 'recompose/compose';
+import { connect } from 'react-redux';
+import { withStyles } from '@material-ui/core/styles';
+import Input from '@material-ui/core/Input';
+import MenuItem from '@material-ui/core/MenuItem';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
+import get from 'lodash/get';
+import ClassNames from 'classnames';
+
+const styleSheet = (theme) => ({
     boxContainerSelectMenu: {
         display: 'flex',
         alignItems: 'center',
@@ -36,8 +38,10 @@ const styleSheet = theme => ({
         backgroundColor: 'transparent !important'
     },
     menuStyle: {
-        color: "#666666",
+        color: '#999999',
         fontFamily: 'Gotham-Book',
+        fontSize: '13px',
+        padding: '0 0.8rem',
         '&:before': {
             backgroundColor: 'transparent !important',
             border: 'none !important'
@@ -48,27 +52,36 @@ const styleSheet = theme => ({
         }
     },
     MuiListRoot: {
-        maxHeight: '18.75em',
+        maxHeight: '18.75em'
     }
-})
+});
 
 class SelectMenu extends Component {
-
-
     renderOptions() {
-        let { options = [], labelKey = 'label', valueKey = 'value' } = this.props
+        let { options = [], labelKey = 'label', valueKey = 'value' } = this.props;
 
-        return options.map((option, index) => {
-            return <MenuItem key={get(option, labelKey)} value={get(option, valueKey)}>{get(option, labelKey)}</MenuItem>
-        })
+        return options.map((option, index) => (
+            <MenuItem key={get(option, labelKey)} value={get(option, valueKey)}>
+                {get(option, labelKey)}
+            </MenuItem>
+        ));
     }
 
     render() {
-        const { classes, value, handleChange, title, menuStyle = {}, disabled } = this.props
+        const {
+            classes,
+            value,
+            handleChange,
+            title,
+            placeholder,
+            menuStyle = {},
+            disabled,
+            className
+        } = this.props;
         return (
             <div className={classes.boxContainerSelectMenu}>
                 {title && <div className={classes.title}> {title} </div>}
-                <FormControl className={classes.formControl}>
+                <FormControl className={ClassNames(classes.formControl, className)}>
                     <Select
                         value={value}
                         onChange={handleChange}
@@ -84,21 +97,24 @@ class SelectMenu extends Component {
                             }
                         }}
                         className={classes.menuStyle}
-                        input={<Input id='age-simple' />}
+                        input={<Input id="age-simple" />}
                         {...menuStyle}
                     >
-                        {
-                            this.renderOptions()
-                        }
+                        {!!placeholder && (
+                            <MenuItem value="default" disabled >{placeholder}</MenuItem>
+                        )}
+                        {this.renderOptions()}
                     </Select>
                 </FormControl>
             </div>
-        )
+        );
     }
 }
-const mapDispatchToProps = (dispatch) => ({
-})
+const mapDispatchToProps = (dispatch) => ({});
 const mapStateToProps = (state) => ({
     searchData: state.search
-})
-export default compose(withStyles(styleSheet), connect(mapStateToProps, mapDispatchToProps))(SelectMenu)
+});
+export default compose(
+    withStyles(styleSheet),
+    connect(mapStateToProps, mapDispatchToProps)
+)(SelectMenu);
