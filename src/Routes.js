@@ -6,7 +6,7 @@ import RegistrationForm from './Components/RegistrationForm'
 import NewJobForm from './Components/NewJobForm'
 import Joblist from './Components/jobList'
 import ParentFile from './Components/ParentFile'
-
+import AsyncAwait from './Container/AsynAwait'
 
 const MainRouter = () => (
   <Router>
@@ -15,6 +15,7 @@ const MainRouter = () => (
            <Route exact path="/createJob"  component={NewJobForm}/>
            <Route exact path="/registarion" component={RegistrationForm}/>
            <Route exact path="/joblist" component={Joblist} />
+          <Route exact path="/async" component={AsyncAwait} />
         </Switch>
     </Router>
 
