@@ -1,0 +1,129 @@
+.tournaMentText{
+    color:#ffffff;
+    font-size:15px;
+}
+.tournaMentBox{
+    width: 540px;
+    height: 540px;
+    display: flex;
+    flex-direction: column;
+    background: var(--unnamed-color-ffffff) 0% 0% no-repeat padding-box;
+    background: #84A4FC 0% 0% no-repeat padding-box;
+    box-shadow: 0px 3px 6px #00000029;
+    border-radius: 30px;
+    opacity: 1;
+    justify-content: space-evenly;
+}
+.circleStyle{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: white;
+    cursor: pointer;
+}
+.rowStyle{
+    display: flex;
+    justify-content: space-evenly;
+}
+.parentDiv{ 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.gameSide{
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+  align-self: baseline;
+  font: normal normal normal 18px/27px Poppins;
+  letter-spacing: 0px;
+  color: #424242;
+  opacity: 1;
+  background: #F5F5F5;
+}
+.commonStyle{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    padding-left: 7px;
+    background: #F5F5F5 0% 0% no-repeat padding-box;
+    border: 1px solid #F7F7F7;
+    border-radius: 30px;
+    opacity: 1;
+    border-radius: 30px;
+}
+.fiveGameTournament{
+    font-size: 25px;
+    text-align: center;
+    font: normal normal medium 36px/55px Poppins;
+    letter-spacing: 0px;
+    color: #424242;
+    opacity: 0.9;
+    font-weight: 600;
+    padding: 5px 0px;
+}
+.congratulation{
+    font-size: 27px;
+    text-align: center;
+    font: normal normal medium 42px/63px Poppins;
+    letter-spacing: 0px;
+    color: #FF6600;
+    font-weight: 700;
+    opacity: 1;
+    padding: 3px 0px;
+}
+.winner{
+    text-align: center;
+    letter-spacing: 0px;
+    color: #505351;
+    opacity: 1;
+    padding-bottom: 8px;
+}
+.cardBlock{
+    border: 1px solid #70707026;
+    border-radius: 15px;
+    opacity: 1;
+    display: flex;
+    width: 80%;
+    padding: 16px;
+    align-items: center;
+    margin-bottom: 16px;
+    height: 100px;
+}
+.circleClass{
+    background: #ffffff 0% 0% no-repeat padding-box;
+    opacity: 1;
+    width: 90px;
+    height: 90px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 20px solid #37AC5D;
+    border-radius: 100px;
+}
+.nameEmailStyle{
+    display: flex;
+    flex-direction: column;
+    padding-left: 30px; 
+}
+.nameStyle{
+    text-align: left;
+    font: normal normal normal 18px/27px Poppins;
+    letter-spacing: 0px;
+    color: #424242;
+    opacity: 0.56;
+}
+.headingStyle{
+    font: normal normal normal 28px/42px Poppins;
+    letter-spacing: 0px;
+    color: #424242;
+    opacity: 1;
+}
+.underlineStyle{
+  height: 1px;
+  width: 100%;
+  opacity: 0.5;
+  background: #656565;
+  margin: 10px 0px;
+}
